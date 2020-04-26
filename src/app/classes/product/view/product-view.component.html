@@ -1,0 +1,84 @@
+<div class="p-grid p-justify-center p-align-stretch">
+  <div class="p-md-3 p-col-12"><img src="{{ product?.imageUrl }}" alt="{{product?.name}}"></div>
+  <div class="p-col-1"></div>
+  <div class="p-col-12 p-md-5">
+    <p-card header="{{ product?.name }}" subheader="{{ product?.supertype }} - {{ product?.subtype }}"
+            [style]="{'height': '100%'}" styleClass="ui-card-shadow">
+      <div>
+        <span>HP {{ product?.hp }} Type {{ product?.types }}</span>
+      </div>
+      <hr>
+      <div>
+        <div>
+          <span>{{ product?.ability?.type }}</span>
+          <span>{{ product?.ability?.name }}</span>
+        </div>
+        <span>{{ product?.ability?.text }}</span>
+      </div>
+      <div>
+        <div *ngFor="let attack of product?.attacks">
+          <span>{{attack.convertedEnergyCost}} {{attack.name}}</span> | <span>{{attack.damage}}</span>
+          <p>{{attack.text}}</p>
+          <br>
+        </div>
+      </div>
+      <div class="ui-table">
+        <table>
+          <thead>
+          <tr>
+            <th>WEAKNESS</th>
+            <th>RESISTANCES</th>
+            <th>RETREAT COST</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>
+              <span
+                *ngIf="product?.weaknesses; else noValue">{{product?.weaknesses[0].type}} {{product?.weaknesses[0].value}}</span>
+              <ng-template #noValue>N/A</ng-template>
+            </td>
+            <td>
+              <span
+                *ngIf="product?.resistances; else noValue">{{product?.resistances[0].type}} {{product?.resistances[0].value}}</span>
+              <ng-template #noValue>N/A</ng-template>
+            </td>
+            <td><span>{{product?.retreatCost}}</span></td>
+          </tr>
+          </tbody>
+        </table>
+        <table>
+          <thead>
+          <tr>
+            <th>ARTIST</th>
+            <th>RARITY</th>
+            <th>SET</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><span>{{product?.artist}}</span></td>
+            <td><span>{{product?.rarity}}</span></td>
+            <td><span>{{product?.set}}</span></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <p-footer>
+        <ng-container *ngIf="isReady">
+          <form [formGroup]="form" (ngSubmit)="addToCart()">
+            <div class="p-grid mt">
+              <div class="p-col">
+                <p-spinner formControlName="quantity" pKeyFilter="money" class="p-col"
+                           [inputStyle]="{'width':'100%'}"></p-spinner>
+              </div>
+              <div class="p-col">
+                <button pButton type="submit" icon="pi pi-shopping-cart"></button>
+              </div>
+            </div>
+          </form>
+        </ng-container>
+      </p-footer>
+    </p-card>
+  </div>
+</div>

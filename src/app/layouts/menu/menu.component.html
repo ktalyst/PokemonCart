@@ -1,0 +1,8 @@
+<div class="layout-sidebar" [ngClass]="sidebar" (mouseover)="sidebar='layout-sidebar-active'" (mouseout)="sidebar=''">
+  <div class="sidebar-logo">
+    <a class="app-name">
+      Pokemon Cart
+    </a>
+  </div>
+  <p-panelMenu [model]="items" [style]="{'width':'258px'}" class="layout-menu"></p-panelMenu>
+</div>

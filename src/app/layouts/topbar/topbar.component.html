@@ -1,0 +1,68 @@
+<p-menubar>
+  <div class="search-item">
+    <p-autoComplete [(ngModel)]="text" [suggestions]="results" (completeMethod)="search($event)"
+                    (onSelect)="goToDetailPage($event)" [inputStyle]="{'width':'300px'}">
+      <ng-template let-item pTemplate="item">
+        <div class="ui-helper-clearfix">
+          <img src="{{item.imageUrl}}" style="width:32px;display:inline-block;margin:5px 0 2px 5px"/>
+          <div style="font-size:18px;float:right;margin:10px 10px 0 0">{{item.name}}</div>
+        </div>
+      </ng-template>
+      <ng-template let-item pTemplate="selectedItem">
+        <span style="font-size:18px">>{{item.name}}<</span>
+      </ng-template>
+    </p-autoComplete>
+    <i class="pi pi-search"></i>
+  </div>
+  <div>
+    <p-overlayPanel #miniCart [dismissable]="true" [appendTo]="'body'">
+      <ng-template pTemplate>
+        <div>
+          <p-table [value]="cart?.items" [tableStyle]="{width:'auto'}">
+            <ng-template pTemplate="header">
+              <tr>
+                <th>Card</th>
+                <th>Name</th>
+                <th>Quantity</th>
+                <th></th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-item>
+              <tr>
+                <td scope="row">
+                  <img width="32" style="vertical-align: middle;" src="{{item.product.imageUrl}}"/>
+                </td>
+                <td>{{item.product.name}}</td>
+                <td pEditableColumn>
+                  <p-cellEditor>
+                    <ng-template pTemplate="input">
+                      <p-spinner [ngModel]="item.quantity" (onBlur)="onEditCell($event, item)"
+                                 pKeyFilter="money"></p-spinner>
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                      {{item.quantity}}
+                    </ng-template>
+                  </p-cellEditor>
+                </td>
+                <td>
+                  <button pButton type="button" class="ui-button-secondary" icon="pi pi-minus"
+                          (click)="removeToCart(item)"></button>
+                </td>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="summary">
+              Total : {{ cart.total.value }}
+            </ng-template>
+          </p-table>
+          <div class="p-grid p-nogutter mt">
+            <p-button label="Go to cart" routerLink="/cart"></p-button>
+          </div>
+        </div>
+      </ng-template>
+    </p-overlayPanel>
+  </div>
+  <a class="minicart ui-button-secondary" pButton type="button" icon="pi pi-shopping-cart"
+     (click)="cart.items.length ? miniCart.toggle($event) : null">
+    <span class="badge"> {{ cart.items.length }} </span>
+  </a>
+</p-menubar>

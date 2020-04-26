@@ -1,0 +1,82 @@
+.layout-sidebar {
+  width: 240px;
+  height: 100%;
+  position: fixed;
+  left: -180px;
+  top: 0;
+  transition-timing-function: cubic-bezier(0.86, 0, 0.07, 1);
+  z-index: 999999;
+  background-color: #ffffff;
+  overflow: auto;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  transition: left 0.3s;
+  box-shadow: 3px 0 6px rgba(0, 0, 0, 0.3);
+  &.layout-sidebar-active {
+    left: 0;
+  }
+  .sidebar-logo {
+    height: 64px;
+    background-color: #F9A825;
+    padding-top: 8px;
+    .app-name {
+      color: #ffffff;
+      vertical-align: middle;
+      font-size: 24px;
+      padding: 8px;
+      display: inline-block;
+    }
+  }
+  .layout-menu {
+    ::ng-deep .ui-panelmenu {
+      margin: 10px 0 0 0;
+      padding: 0;
+      .ui-panelmenu-panel {
+        padding: 4px 30px 4px 10px;
+        width: 100%;
+        .ui-panelmenu-header-link {
+          color: #212121;
+          padding: 10px 10px 10px 10px;
+          position: relative;
+          border-radius: 6px;
+          box-shadow: none;
+          background-color: transparent;
+          border: none;
+          display: flex;
+          &:hover {
+            background-color: #E0E0E0;
+            color: #212121;
+          }
+          .ui-menuitem-icon {
+            order: 3;
+            width: 16px;
+            margin-left: 15px;
+          }
+          .ui-panelmenu-icon {
+            order: 2;
+            margin-left: auto;
+          }
+          .ui-menuitem-text {
+            margin-right: auto;
+          }
+        }
+        .ui-panelmenu-header.ui-state-active {
+          .ui-panelmenu-header-link {
+            color: #fff;
+            background-color: #F9A825;
+            border-radius: 6px 6px 0 0;
+            box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(60, 72, 88, 0.3), 0 7px 10px -5px rgba(60, 72, 88, 0);
+          }
+        }
+        .ui-panelmenu-content {
+          border: none;
+          border-radius: 0 0 6px 6px;
+          background-color: #EEEEEE;
+          .ui-menuitem .ui-menuitem-link .ui-menuitem-text {
+            color: #212121;
+          }
+        }
+      }
+    }
+  }
+}

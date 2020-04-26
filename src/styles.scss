@@ -1,0 +1,76 @@
+body {
+  font-family: "Roboto", "Helvetica Neue", sans-serif;
+  font-size: 14px;
+  color: #212121;
+  padding: 0;
+  margin: 0;
+  min-height: 100%;
+  background-color: #F5F5F5;
+
+  // override primeng
+  .ui-float-label input, .ui-inputtext {
+    background-size: 0 2px, 100% 1px;
+    background: transparent no-repeat;
+    background-size: 0 2px, 100% 1px;
+    background-position: 50% 100%, 50% 100%;
+    transition: background-size 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+    border-width: 0;
+    font-size: 14px;
+    border-radius: 0px;
+    width: 150px;
+    padding: 6px 24px 6px 6px;
+    background-color: transparent;
+    background-image: linear-gradient(to bottom, #1E88E5, #1E88E5), linear-gradient(to bottom, #bdbdbd, #bdbdbd);
+    outline: 0 none;
+    color: #212121;
+
+    &:focus, &:enabled:focus:not(.ui-state-error) {
+      background-size: 100% 2px, 100% 1px;
+      box-shadow: none;
+    }
+  }
+
+  .ui-spinner .ui-spinner-button {
+    width: 2em;
+    background: none;
+    border: none;
+    color: #ccc;
+
+    &:enabled:active, &:enabled:hover {
+      background-color: #bdbdbd;
+      color: #ffffff;
+      border-color: transparent;
+    }
+  }
+
+  .ui-table .ui-table-thead > tr > th {
+    background-color: #1E88E5;
+    color: #ffffff;
+  }
+
+  .ui-overlaypanel {
+    .ui-editable-column {
+      min-width: 160px;
+    }
+  }
+
+  .badge {
+    width: 16px;
+    height: 16px;
+    text-align: center;
+    background-color: #009688;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 16px;
+    border-radius: 50%;
+    position: absolute;
+    right: 6px;
+    bottom: 4px;
+  }
+
+  /* TODO create mixin for margin/padding */
+  .mt {
+    margin-top: 10px;
+  }
+}
